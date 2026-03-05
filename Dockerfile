@@ -1,11 +1,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
+RUN apt-get update && apt-get install -y clang zlib1g-dev
+
 COPY BelpostConnectivityAnalyzer/BelpostConnectivityAnalyzer.csproj .
-RUN dotnet restore -r linux-x64
+RUN dotnet restore
 
 COPY BelpostConnectivityAnalyzer/ .
-RUN dotnet publish -c Release -r linux-x64 --self-contained --no-restore \
+RUN dotnet publish -c Release -r linux-x64 --self-contained \
     -o /app/publish
 
 
