@@ -1,0 +1,9 @@
+[
+  {
+    "type": "MailStatusChangeV1",
+    "enabled": false,
+    "recipients": [
+      "user@example.com"
+    ]
+  }
+]

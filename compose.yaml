@@ -1,0 +1,21 @@
+services:
+  analyzer:
+    build:
+      context: .
+      args:
+        APP_UID: ${APP_UID:-1001}
+    restart: unless-stopped
+    environment:
+      DOTNET_ENVIRONMENT: ${DOTNET_ENVIRONMENT:-Production}
+      SmtpSettings__Host: ${SMTP_HOST:-}
+      SmtpSettings__Port: ${SMTP_PORT:-587}
+      SmtpSettings__Username: ${SMTP_USERNAME:-}
+      SmtpSettings__Password: ${SMTP_PASSWORD:-}
+      SmtpSettings__UseSsl: ${SMTP_USE_SSL:-true}
+      SmtpSettings__FromAddress: ${SMTP_FROM_ADDRESS:-belpost-analyzer@example.com}
+    volumes:
+      - analyzer-data:/app/data
+      - ./reports.json:/app/reports.json:ro
+
+volumes:
+  analyzer-data:
