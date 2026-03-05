@@ -7,7 +7,7 @@
         <InvariantGlobalization>true</InvariantGlobalization>
         <PublishAot>true</PublishAot>
         <UserSecretsId>dotnet-BelpostConnectivityAnalyzer-61636613-ed9c-4cb9-904d-103f23b30c34</UserSecretsId>
-        <RuntimeIdentifiers>linux-x64;osx-arm64;win-x64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>linux-x64;linux-arm64;osx-arm64;win-x64</RuntimeIdentifiers>
     </PropertyGroup>
 
     <ItemGroup>

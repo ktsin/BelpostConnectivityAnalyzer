@@ -7,7 +7,7 @@ COPY BelpostConnectivityAnalyzer/BelpostConnectivityAnalyzer.csproj .
 RUN dotnet restore
 
 COPY BelpostConnectivityAnalyzer/ .
-RUN dotnet publish -c Release -r linux-x64 --self-contained \
+RUN dotnet publish -c Release -r linux-x64 --self-contained -p:PublishTrimmed=true -p:StripSymbols=true \
     -o /app/publish
 
 
@@ -22,9 +22,7 @@ RUN apt-get update \
 WORKDIR /app
 RUN mkdir -p /app/data && chown -R appuser:appuser /app/data
 
-COPY --from=build /app/publish/BelpostConnectivityAnalyzer .
-COPY --from=build /app/publish/appsettings.json .
-COPY --from=build /app/publish/reports.json .
+COPY --from=build /app/publish/. .
 
 USER appuser
 ENTRYPOINT ["/app/BelpostConnectivityAnalyzer"]
